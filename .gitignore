@@ -1,0 +1,6 @@
+gs2D-omp
+gs2D-serial
+jacobi2D-serial
+jacobi2D-omp
+jacobi2D
+gs2D
