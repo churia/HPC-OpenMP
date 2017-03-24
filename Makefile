@@ -1,8 +1,8 @@
 MPCC=gcc
 CC=gcc
-MPFLAGS=-O3 -fopenmp -Wall -lrt -lm
-FLAGS=-O3 -Wall -lrt -lm
-EXECS=jacobi2D-omp gs2D-omp gs2D-serial 
+MPFLAGS=-O3 -fopenmp -Wall  -lm
+FLAGS=-O3 -Wall  -lm
+EXECS=jacobi2D-omp gs2D-omp gs2D-serial hw2.pdf
 
 all: ${EXECS}
 
@@ -14,7 +14,8 @@ gs2D-omp: gs2D-omp.c
 
 gs2D-serial : gs2D-serial.c
 	${CC} ${FLAGS} gs2D-serial.c -o gs2D-serial
-
+hw2.pdf:
+	pdflatex hw2.tex
 
 clean:
 	rm -f ${EXECS}

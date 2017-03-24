@@ -32,10 +32,33 @@
 \end{itemize}
 \subsection{Results}
 \subsubsection{Convergence}
-For this problem, we used three different methods: Jacobi2D, GS-red/black and GS-serial, where GS-red/black is the Gauss-Seidel method with red-black coloring while GS-serial does not use red-black coloring and parallelization. 
+For this problem, we have used three different methods: Jacobi2D, GS-red/black and GS-serial, where GS-red/black is the Gauss-Seidel method with red-black coloring while GS-serial does not use red-black coloring and parallelization. Figures 1 and 2 show the convergence behavior of the three methods with $N=\{24,100,500\}$. Figure 1 shows the relation between the residuals and the number of iterations, while Figure 2 shows relative residual-reductions (compare to the initial residual) along with the number of iterations. 
+
+From Figure 1, we can see that the residuals of the GS-red/black method increase at the early iterations, and as $N$ becomes larger, GS-red/black takes more iterations to achieve the reduction of residual. However, after the early iterations, the GS-red/black converges faster than Jacobi2D as it was in 1D situation. While the GS-serial does not lead to residual-increase and hence converges faster than GS-red/black. From Figure 2, we can see that the convergence rate of two GS methods are similar and are twice as fast as Jacobi, which is consistent as the result of 1D Jacobi and Gauss-Seidel. These results imply that though Gauss-Seidel method using red-black coloring needs more iterations at the early stage to converge than the standard version, it still has good convergence behavior. Therefore, it is reasonable and beneficial to use GS-red/black to do parallelization.
+\begin{figure}[ht]
+\subfigure[$N=24$ \label{f1}]{\includegraphics[width=0.33\linewidth]{figs/ri24.eps}}
+\subfigure[$N=100$ \label{f2}]{\includegraphics[width=0.33\linewidth]{figs/ri100.eps}}
+\subfigure[$N=500$ \label{f2}]{\includegraphics[width=0.33\linewidth]{figs/ri500.eps}}
+\caption{Residuals vs. the number of iterations.}
+\end{figure}
+\begin{figure}[ht]
+\subfigure[$N=24$ \label{f1}]{\includegraphics[width=0.33\linewidth]{figs/cg_24.eps}}
+\subfigure[$N=100$ \label{f2}]{\includegraphics[width=0.33\linewidth]{figs/cg_100.eps}}
+\subfigure[$N=500$ \label{f2}]{\includegraphics[width=0.33\linewidth]{figs/cg_500.eps}}
+\caption{Relative residual-reductions vs. the number of iterations.}
+\end{figure}
 \subsubsection{Timing}
-
-
+Table 1 shows the timing of two parallel methods for $N=500$ and $Iter= 100000$ with different number of threads. Note that experiment about timing is hard to conduct especially on public server with multiple processes running in it. However, we can still roughly conclude from the results that different numbers of threads lead to quite different running time the program need: could be nearly 10 times difference. For this case, though the machine has 64 cores in total, using too many threads (e.g., more than 24) results in very slow execution, while using 8 or 10 threads seems the best choice.
+\begin{table}[ht]
+\centering
+\caption{Run time comparison of two methods with $N=500$ and $Iter= 100000$. (Unit: second)}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\#threads             & 2 & 4 & 8 & 10 & 16 & 24 & 32 & 48 & 64 \\ \hline
+jacobi2D-omp  & 279.76  & 134.76  & 79.01  & 109.08   & 217.47   & 543.70   & 845.17   &  1101.78  & 1268.22   \\ \hline
+gs2D-omp      &  141.77 & 73.51  & 57.86  &  48.26 & 76.82   & 743.15   &  1501.16  &  1950.63  &  2380.67  \\ \hline
+\end{tabular}
+\end{table}
 
 
 
