@@ -18,4 +18,4 @@ hw2.pdf:
 	pdflatex hw2.tex
 
 clean:
-	rm -f ${EXECS}
+	rm -f ${EXECS} *.aux *.log *.gz

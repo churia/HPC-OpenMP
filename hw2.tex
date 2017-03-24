@@ -52,11 +52,11 @@ Table 1 shows the timing of two parallel methods for $N=500$ and $Iter= 100000$ 
 \begin{table}[ht]
 \centering
 \caption{Run time comparison of two methods with $N=500$ and $Iter= 100000$. (Unit: second)}
-\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+\begin{tabular}{|c|r|r|r|r|r|r|r|r|r|}
 \hline
-\#threads             & 2 & 4 & 8 & 10 & 16 & 24 & 32 & 48 & 64 \\ \hline
-jacobi2D-omp  & 279.76  & 134.76  & 79.01  & 109.08   & 217.47   & 543.70   & 845.17   &  1101.78  & 1268.22   \\ \hline
-gs2D-omp      &  141.77 & 73.51  & 57.86  &  48.26 & 76.82   & 743.15   &  1501.16  &  1950.63  &  2380.67  \\ \hline
+\#threads             & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{8} & \multicolumn{1}{c|}{10} & \multicolumn{1}{c|}{16} & \multicolumn{1}{c|}{24} & \multicolumn{1}{c|}{32} & \multicolumn{1}{c|}{48} & \multicolumn{1}{c|}{64} \\ \hline
+jacobi2D-omp  & 279.76  & 134.76  & {\bf 79.01}  & 109.08   & 217.47   & 543.70   & 845.17   &  1101.78  & 1268.22   \\ \hline
+gs2D-omp      &  141.77 & 73.51  & 57.86  &  {\bf 48.26} & 76.82   & 743.15   &  1501.16  &  1950.63  &  2380.67  \\ \hline
 \end{tabular}
 \end{table}
 
