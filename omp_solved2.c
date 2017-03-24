@@ -15,7 +15,7 @@ int nthreads, i, tid;
 float total;
 
 /*** Spawn parallel region ***/
-#pragma omp parallel private(tid, total)
+#pragma omp parallel private(tid, total) //tid, total should be private
   {
   /* Obtain thread number */
   tid = omp_get_thread_num();

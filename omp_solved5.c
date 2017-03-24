@@ -45,7 +45,7 @@ omp_init_lock(&lockb);
       omp_set_lock(&locka);
       for (i=0; i<N; i++)
         a[i] = i * DELTA;
-      //release locka right after finish writing a[]
+      //release locka before trying to set lockb
       omp_unset_lock(&locka);
       omp_set_lock(&lockb);
       printf("Thread %d adding a[] to b[]\n",tid);
@@ -61,7 +61,7 @@ omp_init_lock(&lockb);
       omp_set_lock(&lockb);
       for (i=0; i<N; i++)
         b[i] = i * PI;
-      //release lockb right after finish writing b[]
+      //release lockb before trying to set locka
       omp_unset_lock(&lockb);
       omp_set_lock(&locka);
       printf("Thread %d adding b[] to a[]\n",tid);
