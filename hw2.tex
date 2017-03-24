@@ -1,0 +1,42 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+
+
+\usepackage[letterpaper, top=10mm, left=22mm, right=22mm]{geometry}
+             		% See geometry.pdf to learn the layout options. There are lots.
+              		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex
+\usepackage{amssymb,amsmath,multirow,subfigure}
+  
+\title{\bf HPC-Homework 2}
+\author{\bf \large Ya Zhu}
+\date{}							% Activate to display a given date or no date
+\begin{document}
+\maketitle 
+\section{Bug fixing}
+\begin{itemize}
+\item omp\_bug2: \emph{tid} and \emph{total} should be declared private for each thread.
+\item omp\_bug3: \emph{\#pragma omp barrier} should not be outside the parallel directives. So comment it.
+\item omp\_bug4: $a[N][N]$ may be too large to store in thread stack space and cause segment fault. So change to a smaller N.
+\item omp\_bug5: if one thread has set \emph{locka} while the other has set \emph{lockb}, then when they are trying to set the other lock, deadlock happened. So unlock the lock before setting another one.
+\item omp\_bug6: reduction variable should be shared by all the threads executing \emph{dotprod}. So set \emph{sum} global, and then no return variable needed for \emph{dotprod}.
+\end{itemize}
+\section{Experiment}
+\subsection{Settings}
+\begin{itemize}
+\item Machine: Courant server \emph{crunchy1} (64 cores).
+\item Compiling option: -O3 for all methods.
+\item The residual is the L2-norm (Euclidean norm): $||A\boldsymbol{u}^k-\boldsymbol{f}||=\sqrt{\sum_{i,j}({-\Delta_{u_{ij}}-f})^2}$.
+\end{itemize}
+\subsection{Results}
+\subsubsection{Convergence}
+For this problem, we used three different methods: Jacobi2D, GS-red/black and GS-serial, where GS-red/black is the Gauss-Seidel method with red-black coloring while GS-serial does not use red-black coloring and parallelization. 
+\subsubsection{Timing}
+
+
+
+
+
+\end{document}  

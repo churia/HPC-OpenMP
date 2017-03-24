@@ -4,3 +4,8 @@ jacobi2D-serial
 jacobi2D-omp
 jacobi2D
 gs2D
+a.out
+*.aux
+*.gz
+*.log
+*.pdf
