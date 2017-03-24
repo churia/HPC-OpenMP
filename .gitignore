@@ -1,3 +1,4 @@
+.DS_Store
 gs2D-omp
 gs2D-serial
 jacobi2D-serial
