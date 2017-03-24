@@ -47,6 +47,7 @@ int main(int argc, char * argv[])
   /* timing */
   timestamp_type time1, time2;
   get_timestamp(&time1);
+  double elapsed; 
   M = N+2; //include border points
  
   /* Allocation of vectors, including up and below border ghost points */
@@ -86,7 +87,9 @@ int main(int argc, char * argv[])
     //memcpy(u, unew, (N+2)*(N+2)*sizeof(double));
     if (0 == (iter % 10)) {
       res = compute_residual(u, M, hsq);
-      printf("Iter %d Residual %g\n", iter, res);
+      get_timestamp(&time2);
+      elapsed = timestamp_diff_in_seconds(time1,time2);
+      printf("Iter %d Res %g Time %f\n", iter, res,elapsed);
     }
   }
 
@@ -96,7 +99,7 @@ int main(int argc, char * argv[])
 
   /* timing */
   get_timestamp(&time2);
-  double elapsed = timestamp_diff_in_seconds(time1,time2);
+  elapsed = timestamp_diff_in_seconds(time1,time2);
   printf("Time elapsed is %f seconds.\n", elapsed);
   return 0;
 }

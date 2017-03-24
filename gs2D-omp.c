@@ -104,8 +104,8 @@ int main(int argc, char * argv[])
     if (0 == (iter % 10)) {
       res = compute_residual(u, M, hsq);
       get_timestamp(&time2);
-  = timestamp_diff_in_seconds(time1,time2);
-      printf("Iter %d Residual %g\n", iter, res);
+      elapsed = timestamp_diff_in_seconds(time1,time2);
+      printf("Iter %d Res %g Time %f\n", iter, res, elapsed);
     }
   }
 
@@ -114,7 +114,7 @@ int main(int argc, char * argv[])
 
   /* timing */
   get_timestamp(&time2);
-  double elapsed = timestamp_diff_in_seconds(time1,time2);
+  elapsed = timestamp_diff_in_seconds(time1,time2);
   printf("Time elapsed is %f seconds.\n", elapsed);
   return 0;
 }
